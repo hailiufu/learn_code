@@ -1,0 +1,50 @@
+#include<string.h>
+#include<stdio.h>
+
+void sort(char str[], int left, int right)//快速排序
+{
+     int i=left,j=right;
+     int point = str[(left+right)/2];
+     while(i<=j)
+     {
+          while(str[i]<point)
+               i++;
+          while(str[j]>point)
+               j--;
+          if(i<=j)
+          {
+               int temp = str[i];
+               str[i] = str[j];
+               str[j] = temp;
+               i++;j--;
+          }
+     }
+     if(i<right)
+          sort(str, i, right);
+     if(j>left)
+          sort(str, left, j);
+}
+int main()
+{
+     char str[100];
+     scanf("%s", str);
+     sort(str, 0,strlen(str)-1);
+     printf("%s",str);
+     printf("\n");
+
+     char *ptr = str;
+     int count = 1;
+     /*计算不同字母的个数 并print*/
+     while(*ptr != '\0')
+     {
+          if(*ptr == *(ptr+1))
+               count++;
+          else
+          {
+               printf("%c %d\n", *ptr, count);
+               count = 1;
+          }
+          ptr++;
+     }
+     return 0;
+}
