@@ -1,0 +1,46 @@
+#include <stdio.h>
+void merge (int sr[] ,int n,int tr[],int m ,int temp[] );
+int A[200000], n;
+int B[200000], m;
+int C[400000];
+int main()
+{
+     scanf("%d", &n);
+     for(int i=0; i<n; i++)
+     scanf("%d", &A[i]);
+     scanf("%d", &m);
+     for(int i=0; i<m; i++)
+     scanf("%d", &B[i]);
+     merge (A,n-1,B, m-1 ,C );
+     for(int i=0;i<n+m;i++)
+          printf("%d ", C[i]);
+     printf("\n");
+     return 0;
+}
+
+
+void merge (int sr[] ,int n,int tr[],int m ,int temp[] )
+{
+     int i = 0;
+     int j = 0;
+     int tma = 0;
+     while (i <= n && j <= m)
+     {
+          if (sr[i] < tr[j])
+          {
+               temp[tma++] = sr[i++];
+          }
+          else
+          {
+               temp[tma++] = tr[j++];
+          }
+     }
+     while (i <= n)
+     {
+          temp[tma++] = sr[i++];
+     }
+     while (j <= m)
+     {
+          temp[tma++] = tr[j++];
+     }
+}
